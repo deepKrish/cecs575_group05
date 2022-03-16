@@ -37,49 +37,6 @@ public class Product {
     }
 
 
-    //BUILDER PATTERN
-    static class ProductBuilder{
-        private Integer id;
-        private @NotNull String prodName;
-        private @NotNull String prodPic;
-        private @NotNull double prodPrice;
-        private @NotNull String prodDescription;
-        Category category;
-
-
-        public void ProductBuilder(Integer id){
-            this.id = id;
-            this.category = category;
-        }
-
-        public ProductBuilder prodName(String prodName){
-            this.prodName = prodName;
-            return this;
-        }
-        public ProductBuilder prodPic(String prodPic){
-            this.prodPic = prodPic;
-            return this;
-        }
-
-        public ProductBuilder prodPrice(double prodPrice){
-            this.prodPrice = prodPrice;
-            return this;
-        }
-        public ProductBuilder prodDescription(String prodDescription){
-            this.prodDescription = prodDescription;
-            return this;
-        }
-
-        public ProductBuilder build(){
-                return this;
-            }
-        }
-
-
-
-
-
-
     public Integer getId() {
         return id;
     }
@@ -138,4 +95,51 @@ public class Product {
                 ", description='" + prodDescription + '\'' +
                 '}';
     }
+
+    public Product(Product.ProductBuilder builder) {
+        this.id = builder.id;
+        this.prodName = builder.prodName;
+        this.prodPic = builder.prodPic;
+        this.prodDescription = builder.prodDescription;
+        this.prodPrice = builder.prodPrice;
+    }
+
+    //BUILDER PATTERN
+    public static class ProductBuilder{
+        private Integer id;
+        private @NotNull String prodName;
+        private @NotNull String prodPic;
+        private @NotNull double prodPrice;
+        private @NotNull String prodDescription;
+        Category category;
+
+
+        public ProductBuilder(Integer id){
+            this.id = id;
+            this.category = category;
+        }
+
+        public Product.ProductBuilder prodName(String prodName){
+            this.prodName = prodName;
+            return this;
+        }
+        public Product.ProductBuilder prodPic(String prodPic){
+            this.prodPic = prodPic;
+            return this;
+        }
+
+        public Product.ProductBuilder prodPrice(double prodPrice){
+            this.prodPrice = prodPrice;
+            return this;
+        }
+        public Product.ProductBuilder prodDescription(String prodDescription){
+            this.prodDescription = prodDescription;
+            return this;
+        }
+
+        public Product.ProductBuilder build(){
+                return this;
+            }
+        }
+
 }
