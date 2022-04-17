@@ -16,7 +16,7 @@ public class Product {
     private @NotNull String prodName;
     private @NotNull String prodPic;
     private @NotNull double prodPrice;
-    private @NotNull String prodDescription;
+    private @NotNull String description;
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -24,12 +24,12 @@ public class Product {
     Category category;
 
 
-    public Product(String prodName, String prodPic, double prodPrice, String prodDescription, Category category) {
+    public Product(String prodName, String prodPic, double prodPrice, String description, Category category) {
         super();
         this.prodName = prodName;
         this.prodPic = prodPic;
         this.prodPrice = prodPrice;
-        this.prodDescription = prodDescription;
+        this.description = description;
         this.category = category;
     }
 
@@ -69,12 +69,12 @@ public class Product {
         this.prodPrice = prodPrice;
     }
 
-    public String getProdDescription() {
-        return prodDescription;
+    public String getDescription() {
+        return description;
     }
 
-    public void setProdDescription(String prodDescription) {
-        this.prodDescription = prodDescription;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Category getCategory() {
@@ -92,7 +92,7 @@ public class Product {
                 ", name='" + prodName + '\'' +
                 ", imageURL='" + prodPic + '\'' +
                 ", price=" + prodPrice +
-                ", description='" + prodDescription + '\'' +
+                ", description='" + description + '\'' +
                 '}';
     }
 
@@ -100,7 +100,7 @@ public class Product {
         this.id = builder.id;
         this.prodName = builder.prodName;
         this.prodPic = builder.prodPic;
-        this.prodDescription = builder.prodDescription;
+        this.description = builder.prodDescription;
         this.prodPrice = builder.prodPrice;
     }
 
