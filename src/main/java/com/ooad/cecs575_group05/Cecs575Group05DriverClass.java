@@ -47,6 +47,42 @@ public class Cecs575Group05DriverClass {
 		String printThisNew1 = silverSubscriptionWithGiftWrapAndMessage.description();
 		System.out.println(printThisNew1);
 
-	}
+		//VISITOR FOR BEHAVIORAL PATTERN
+		System.out.println("\n");
+		System.out.println("\n");
+		System.out.println("VISITOR FOR BEHAVIORAL PATTERN");
+		AcceptVisitor[] items = new AcceptVisitor[]{new LuxuryProduct(1500, "Gold"),
+													new LuxuryProduct(900, "Silver"),
+													new GroceryProduct(5, 3, "Rice"),
+													new GroceryProduct(25, 2, "Avocado")};
+
+		int total = calcPrice(items);
+		System.out.println("Final Cost = "+total);
+
+
+		//STRATEGY FOR BEHAVIORAL PATTERN
+		System.out.println("\n");
+		System.out.println("\n");
+		System.out.println("STRATEGY FOR BEHAVIORAL PATTERN");
+		ShoppingCart cart = new ShoppingCart();
+		LuxuryProduct prod1 = new LuxuryProduct(2500, "DIAMOND");
+		LuxuryProduct prod2 = new LuxuryProduct(1500, "GOLD");
+		cart.addItem(prod1);
+		cart.addItem(prod2);
+		//ONLINE PAYMENT
+		cart.payment(new OnlineStrategy("vidyashikhadeepa@example.com", "54321"));
+		//DEBIT CARD PAYMENT
+		cart.payment(new CardStrategy("Shikha Vidya Deepa", "123456789876543210", "203", "01/27"));
+		}
+
+
+		private static int calcPrice(AcceptVisitor[] items) {
+			CartVisitor visitor = new CartVisitorImpl();
+			int finalCost=0;
+			for(AcceptVisitor item : items){
+				finalCost = finalCost + item.accept(visitor);
+			}
+			return finalCost;
+		}
 
 }
